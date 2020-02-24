@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import definition.User;
 
+
 import support.RESTSupport;
 
 /**
@@ -24,7 +25,7 @@ public class CrudUserSteps {
 
     @When("^user clicks on save button$")
     public void userClicksOnSaveButton() throws Throwable {
-        RESTSupport.executePost(User.getEndPoint(),User.getFields());
+        RESTSupport.executePost(User.getEndPoint() + ".json",User.getFields());
         User.setLastUser(RESTSupport.key("id").toString());
         User.clearFields();
     }
@@ -32,6 +33,11 @@ public class CrudUserSteps {
     @And("^user wants to see user information$")
     public void userWantsToSeeUserInformation() throws Throwable {
         RESTSupport.executeGet(User.getEndPoint() + User.getLastUser() + ".json");
+    }
+
+    @And("^user wants to see user information of last user$")
+    public void userWantsToSeeUserInformationOfLastUser() throws Throwable {
+        RESTSupport.executeGet(User.getEndPoint() + "/" + User.getLastUser() + ".json");
     }
 
     @And("^user clicks on save button again$")
@@ -47,5 +53,20 @@ public class CrudUserSteps {
     @And("^user clicks on save button with only one change$")
     public void userClicksOnSaveButtonWithOnlyOneChang() throws Throwable {
         RESTSupport.executePatch(User.getEndPoint() + User.getLastUser() + ".json",User.getFields());
+    }
+
+    @Given("^user would like to see all users$")
+    public void userWouldLikeToSeeAllUsers() {
+        User.clearFields();
+    }
+
+    @When("^user access user page$")
+    public void userAccessUserPage() {
+        RESTSupport.executeGet(User.getEndPoint() + "/" + User.getLastUser()  + ".json");
+    }
+
+    @Given("^user would like to see all users number (.*)$")
+    public void userWouldLikeToSeeAllUsersNumber(String number) {
+        User.setLastUser(number);
     }
 }

@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: runner.RunnerTest
+-------------------------------------------------------------------------------
+Tests run: 81, Failures: 2, Errors: 0, Skipped: 7, Time elapsed: 8.461 sec <<< FAILURE! - in runner.RunnerTest
+E o usuário dever ver o campo "nome" com valor "eletro domesticos"(| 12345 | não encontrado |)  Time elapsed: 0.009 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<eletro domesticos> but was:<null>
+
+| 12345 | não encontrado |  Time elapsed: 0.01 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<eletro domesticos> but was:<null>
+
